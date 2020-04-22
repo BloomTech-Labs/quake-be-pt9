@@ -1,15 +1,18 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("users", tbl => {
+  return knex.schema.createTable("users", (tbl) => {
     tbl.increments();
-    tbl.text("first_name", 128)
-      tbl.text("last_name", 128);
-     tbl.text("email",128)
-     tbl.text("phone");
-    tbl.text("password", 128)
-     tbl.text('city', 128)
-     tbl.text('state', 128) 
-    tbl.text('country',128)
-     
+    tbl.text("first_name", 128).notNullable();
+    tbl.text("last_name", 128).notNullable();
+
+    tbl.text("email", 128).notNullable();
+
+    tbl.text("phone");
+    tbl.text("password", 128).notNullable();
+
+    tbl.text("city", 128);
+    tbl.text("state", 128);
+    tbl.text("country", 128);
+    tbl.text("zipcode", 128);
   });
 };
 

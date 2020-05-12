@@ -18,7 +18,7 @@ router.get('/all', (req,res)=> {
 
 
 
-router.post('/register', (req,res)=> {
+router.post('/register',  authReg,(req,res)=> {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10)
     user.password = hash;
@@ -34,7 +34,7 @@ router.post('/register', (req,res)=> {
 
 })
 
-router.post('/login', (req,res)=> {
+router.post('/login', authLogin, (req,res)=> {
     let {email, password} = req.body;
     Users.findBy({email})
     .first()
@@ -42,12 +42,12 @@ router.post('/login', (req,res)=> {
         if(user && bcrypt.compareSync(password, user.password)){
             const token = genToken(user);
             res.status(200).json({
-                messsage: `Welcome ${user.first_name}! `,
-                user: {
-                    'user_id': user.id,
-                    'email':user.email,
-                    'token': token
-                }
+                message:`Welcome ${user.email }! ` 
+            //     user: {
+            //         'user_id': user.id,
+            //         'email':user.email,
+            //         'token': token
+            //     }
             });
         }else{
             res.status(401).json({message: 'Invalid Credentials'})
@@ -55,6 +55,22 @@ router.post('/login', (req,res)=> {
     })
     .catch(err=> {
         res.status(500).json({message: errror})
+    })
+})
+
+router.delete('/:id', (req,res)=> {
+    const {id}= req.params;
+
+    Users.remove(id)
+    .then(count=> {
+        if(count){
+            res.json({removed: count});
+        }else{
+            res.status(404).json({message: 'Could not find that user'})
+        }
+    })
+    .catch(err=> {
+        res.status(500).json({message: 'Failed to delete'})
     })
 })
 
@@ -72,5 +88,50 @@ function genToken(user) {
     return token;
   }
 
+  function authLogin(req,res,next){
+      const {email, password}= req.body;
+    
+      email && typeof email == 'string'
+      ? password && typeof password == 'string'
+      ? next()
+      :res.status(400).json({
+          message: 'Missing password, or password is not a string'
+      })
+      : res.status(400).json({
+          message: ' Request is missing email or email is not a string.'
+      })
+  }
+
+
+  function authReg (req, res, next){
+      const { email, password}= req.body;
+      email && typeof email == 'string'
+      ? password && typeof password == 'string'
+      ? next()
+      :res.status(400).json({
+          message: 'Missing password, or password is not a string'
+      })
+      : res.status(400).json({
+          message: ' Request is missing email or email is not a string.'
+      })
+  }
+
+
+  function dupeEmailCheck(req, res, next) {
+    const {email} = req.body;
+    Users.findBy({ email })
+      .then(user => {
+        if (user) {
+          res.status(409).json({ message: "Username already in use" });
+        } else {
+          next();
+        }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ message: "Error checking for duplicate username" });
+      });
+  }
 
 module.exports = router;

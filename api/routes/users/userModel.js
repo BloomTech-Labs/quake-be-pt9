@@ -1,4 +1,4 @@
-const db = require('../../../database/dbConfig')
+const db = require('../../../data/dbConfig')
 
 function addUser(user){
     return  db('users')

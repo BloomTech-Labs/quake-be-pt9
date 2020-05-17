@@ -16,12 +16,16 @@ router.get('/all', (req,res)=> {
   });
   });
 
+ 
+
 
 
 router.post('/register',  authReg,(req,res)=> {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10)
     user.password = hash;
+    const token = genToken(user);
+
 
     Users.addUser(user)
     .then(saved=>{
@@ -42,12 +46,12 @@ router.post('/login', authLogin, (req,res)=> {
         if(user && bcrypt.compareSync(password, user.password)){
             const token = genToken(user);
             res.status(200).json({
-                message:`Welcome ${user.email }! ` 
-            //     user: {
-            //         'user_id': user.id,
-            //         'email':user.email,
-            //         'token': token
-            //     }
+                message:`Welcome ${user.email }! ` ,
+                user: {
+                    'user_id': user.id,
+                    'email':user.email,
+                    'token': token
+                }
             });
         }else{
             res.status(401).json({message: 'Invalid Credentials'})

@@ -16,6 +16,21 @@ router.get('/all', (req,res)=> {
   });
   });
 
+  router.get('/:id', (req,res)=> {
+   const {id} = req.params 
+    Users.findById(id)
+     .then(user => {
+         if(user){
+        res.status(200).json(user);}
+        else{
+            res.status(404).json({message: 'could not find that user'})
+        }
+    })
+    .catch(err => {
+        res.status(500).json('could not get')
+    })
+  })
+
  
 
 
@@ -50,7 +65,9 @@ router.post('/login', authLogin, (req,res)=> {
                 user: {
                     'user_id': user.id,
                     'email':user.email,
-                    'token': token
+                    'token': token,
+                    'city': user.city,
+                     'country': user.country
                 }
             });
         }else{

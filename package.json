@@ -39,5 +39,15 @@
     "cross-env": "^7.0.2",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
-  }
+  },
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+		"!**/node_modules/**",
+    "!**/vendor/**",
+		"!**/database/**",
+		"!**/tests/**",
+		"!**/spec/**",
+    "!**/*.spec.{js,jsx}",
+		"!**/coverage/**"
+	]
 }

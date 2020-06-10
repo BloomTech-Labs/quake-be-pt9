@@ -1,9 +1,6 @@
-const Users = require("./userModel");
-const bcrypt = require("bcrypt");
-const secrets = require("../config/secrets");
-const jwt = require("jsonwebtoken");
-
 const router = require("express").Router();
+const Users = require("./userModel");
+
 router.get("/all", (req, res) => {
   Users.getUsers()
     .then((user) => {
@@ -29,8 +26,6 @@ router.get("/:id", (req, res) => {
     });
 });
 
-
-
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
 
@@ -46,46 +41,6 @@ router.delete("/:id", (req, res) => {
       res.status(500).json({ message: "Failed to delete" });
     });
 });
-
-function genToken(user) {
-  const payload = {
-    userid: user.id,
-    username: user.username,
-  };
-  const secret = secrets.jwtSecret;
-  const options = { expiresIn: "1h" };
-
-  const token = jwt.sign(payload, secrets.jwtSecret, options);
-
-  return token;
-}
-
-function authLogin(req, res, next) {
-  const { email, password } = req.body;
-
-  email && typeof email == "string"
-    ? password && typeof password == "string"
-      ? next()
-      : res.status(400).json({
-          message: "Missing password, or password is not a string",
-        })
-    : res.status(400).json({
-        message: " Request is missing email or email is not a string.",
-      });
-}
-
-function authReg(req, res, next) {
-  const { email, password } = req.body;
-  email && typeof email == "string"
-    ? password && typeof password == "string"
-      ? next()
-      : res.status(400).json({
-          message: "Missing password, or password is not a string",
-        })
-    : res.status(400).json({
-        message: " Request is missing email or email is not a string.",
-      });
-}
 
 function dupeEmailCheck(req, res, next) {
   const { email } = req.body;

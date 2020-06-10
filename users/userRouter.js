@@ -34,25 +34,6 @@ router.get('/all', (req,res)=> {
  
 
 
-
-router.post('/register',  authReg,(req,res)=> {
-    let user = req.body;
-    const hash = bcrypt.hashSync(user.password, 10)
-    user.password = hash;
-    const token = genToken(user);
-
-
-    Users.addUser(user)
-    .then(saved=>{
-        res.status(201).json(saved)
-    })
-    .catch(err=> {
-        res.status(500).json(err)
-    })
-
-
-})
-
 router.post('/login', authLogin, (req,res)=> {
     let {email, password} = req.body;
     Users.findBy({email})

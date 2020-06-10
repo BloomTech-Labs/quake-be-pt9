@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "cross-env DATABASE_URL=testing jest --watch"
   },
   "repository": {
     "type": "git",
@@ -32,10 +33,11 @@
     "knex": "^0.20.4",
     "knex-migrate": "^1.7.4",
     "pg": "^7.18.2",
-    "postgresql": "^0.0.1",
-    "supertest": "^4.0.2"
+    "postgresql": "^0.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   }
 }

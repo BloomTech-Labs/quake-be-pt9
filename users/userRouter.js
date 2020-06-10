@@ -1,7 +1,7 @@
 
 const Users = require('./userModel');
 const bcrypt = require('bcrypt');
-const secrets = require ('../../../config/secrets');
+const secrets = require ('../config/secrets');
 const jwt = require('jsonwebtoken');
 
 

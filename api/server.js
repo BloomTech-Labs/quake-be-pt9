@@ -17,7 +17,6 @@ server.use("/api/auth", authRouter);
 server.use("/api/users", usersRouter);
 
 server.get("/", (req, res) => {
-  res.send("Quake Online!");
+  res.status(200).json({ message: "Quake Online!"});
 });
-
 module.exports = server;

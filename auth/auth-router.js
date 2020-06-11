@@ -36,7 +36,10 @@ router.post("/login", (req, res) => {
         const token = genToken(user);
         res.status(200).json({
           message: `Welcome ${user.email}! `,
-          email: user.email,
+          user: { 
+            email: user.email,
+            city: user.city 
+          },
           token: token,
         });
       } else {

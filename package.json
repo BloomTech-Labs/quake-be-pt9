@@ -42,12 +42,12 @@
   },
   "collectCoverageFrom": [
     "**/*.{js,jsx}",
-		"!**/node_modules/**",
+    "!**/node_modules/**",
     "!**/vendor/**",
-		"!**/database/**",
-		"!**/tests/**",
-		"!**/spec/**",
+    "!**/database/**",
+    "!**/tests/**",
+    "!**/spec/**",
     "!**/*.spec.{js,jsx}",
-		"!**/coverage/**"
-	]
+    "!**/coverage/**"
+  ]
 }

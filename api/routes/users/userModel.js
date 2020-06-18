@@ -1,4 +1,5 @@
-const db = require('../../../data/dbConfig')
+const db = require('../../../data/dbConfig');
+const { delete } = require('../../../data/dbConfig');
 
 function addUser(user){
     return  db('users')
@@ -17,11 +18,17 @@ function addUser(user){
       .where({id})
       .first();
   }
-   
+
+   function remove(id)
+   {
+     delete db('users').where({id})
+     .first
+   }
   
   module.exports= {
       addUser,
       findBy,
       getUsers,
-      findById
+      findById,
+      remove
    }

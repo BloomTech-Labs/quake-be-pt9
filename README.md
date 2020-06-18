@@ -6,7 +6,7 @@
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [🚫name service here](🚫add URL here) <br>
+#### 1️⃣ Backend delpoyed at [Heroku](https://epicentralpt9.herokuapp.com/) <br>
 
 ## 1️⃣ Getting started
 
@@ -19,14 +19,12 @@ To get the server running locally:
 - **yarn server** to start the local server
 - **yarn test** to start server using testing environment
 
-### Backend framework goes here
+### Node Js
 
 🚫 Why did you choose this framework?
-
--    Point One
--    Point Two
--    Point Three
--    Point Four
+-    So We could fetch data with Axios.
+-   Works well with PostGresql.
+-   Works well with React.
 
 ## 2️⃣ Endpoints
 
@@ -36,10 +34,8 @@ To get the server running locally:
 
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
-
+| GET    | `https://epicentralpt9.herokuapp.com/api` | all users      | api router. |
+            `https://epicentralpt9.herokuapp.com/api/auth`| all users | To Login and register.
 #### User Routes
 
 | Method | Endpoint                | Access Control      | Description                                        |

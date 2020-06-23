@@ -1,9 +1,10 @@
 const Users = require("./userModel");
 const bcrypt = require("bcrypt");
-const secrets = require("../../../config/secrets");
+const secrets = require("../../config/secrets");
 const jwt = require("jsonwebtoken");
 
 const router = require("express").Router();
+
 router.get("/all", (req, res) => {
   Users.getUsers()
     .then((user) => {

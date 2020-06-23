@@ -1,13 +1,13 @@
 {
-  "name": "expat-journal",
+  "name": "Epicentral",
   "version": "1.0.0",
-  "description": "bw-expat-journal",
+  "description": "Backend for Epicentral",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
     "start": "node index.js",
-    "test": "jest --detectOpenHandles --forceExit",
-    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
+    "test": "cross-env DB_ENV=testing jest --watch",
+    "coverage": "cross-env DB_ENV=testing jest --coverage --detectOpenHandles --forceExit || true"
   },
   "jest": {
     "testEnvironment": "node",
@@ -22,15 +22,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LambdaSchool/Sprint-Challenge-Authentication.git"
+    "url": "git+https://github.com/Lambda-School-Labs/quake-be-pt9.git"
   },
   "keywords": [],
   "author": "Lambda School",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LambdaSchool/Sprint-Challenge-Authentication/issues"
+    "url": "https://github.com/Lambda-School-Labs/quake-be-pt9/issues"
   },
-  "homepage": "https://github.com/LambdaSchool/Sprint-Challenge-Authentication#readme",
+  "homepage": "https://github.com/Lambda-School-Labs/quake-be-pt9#readme",
   "dependencies": {
     "axios": "^0.19.0",
     "bcrypt": "^4.0.1",

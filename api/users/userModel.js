@@ -20,7 +20,7 @@ function findById(id){
 }
 
 function remove(id) {
-  db('users').where({id}).del();
+  return db('users').where({id}).del();
 }
 
 module.exports = {

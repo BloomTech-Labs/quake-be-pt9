@@ -42,7 +42,7 @@
     "helmet": "^3.21.2",
     "jest": "^25.1.0",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.20.4",
+    "knex": "^2.4.0",
     "knex-migrate": "^1.7.4",
     "pg": "^7.18.2",
     "postgresql": "^0.0.1"
